@@ -1,0 +1,5 @@
+pretrained-models/*
+pretrained-models/
+Codes/logs/*
+Codes/img/*
+*.log

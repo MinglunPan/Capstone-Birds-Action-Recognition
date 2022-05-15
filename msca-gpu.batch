@@ -1,0 +1,24 @@
+#!/bin/bash
+#SBATCH --job-name=mil
+#SBATCH --output=%j_out.log
+#SBATCH --error=%j_err.log
+#SBATCH --time=96:00:00
+#SBATCH --partition=mscagpu
+#SBATCH -A mscagpu
+#SBATCH --gres=gpu:1
+#SBATCH --nodes=1
+#SBATCH --exclusive
+# Set up the environment
+
+source /project2/msca/ivy2/software2/etc/MSCA_31009-4_env.sh
+
+# Run the program
+cd $PWD
+echo $PWD
+HOST=`hostname`
+IP=$(ifconfig | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+' | head -n1)
+echo "Run jupyter-notebook at $HOST/$IP" > notebook.log
+TOKEN=`openssl rand -base64 18`
+echo "URL AT http://${IP}:8888/?token=${TOKEN}" >> notebook.log
+
+jupyter-notebook --ip=0.0.0.0 --NotebookApp.token=${TOKEN} --no-browser > .notebook.log 2>&1
