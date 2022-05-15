@@ -14,3 +14,5 @@ Step 3. If the job has been allocated the resources requested, you will see a fi
 REMEMBER: When you DO NOT need the resources any more, use `scancel <jobid>` to release the resources occupied. `<jobid>` can be seen by `squeue -u <CNET_ID>`
 
   
+## 
+If you find it useful, **star** it:)
